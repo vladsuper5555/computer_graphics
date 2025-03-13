@@ -650,7 +650,7 @@ void drawHexThingFractal(Turtle t, float distance, int recursionLeft, bool isBia
 }
 
 
-void drawHexThingFractalPaper(Turtle t, float distance, int recursionLeft, float angleStep = float(M_PI) / 3.0f)
+void drawHexThingFractalPaper(Turtle t, float distance, int recursionLeft, int odd)
 {
     // Example of a placeholder; replace with the actual instructions from the paper.
     if (recursionLeft > 0) {
@@ -666,18 +666,18 @@ void drawHexThingFractalPaper(Turtle t, float distance, int recursionLeft, float
         
         // 2. Move & rotate them according to your paper’s instructions:
         //    (These are just examples—replace with the actual logic.)
-        // float angleStep = float(M_PI) / 3.0f; // 60 degrees
-        t1.rotate(angleStep);          
-        t2.rotate(angleStep);    t2.move(distance / 3);
-        t2.rotate(-angleStep);
-        t3.rotate(angleStep);  t3.move(distance / 3);
-        t3.rotate(-angleStep);  t3.move(distance / 3);
-        t3.rotate(-angleStep);
+        float angleStep = float(M_PI) / 3.0f; // 60 degrees
+        t1.rotate(angleStep * odd);          
+        t2.rotate(angleStep * odd);    t2.move(distance / 3);
+        t2.rotate(-angleStep * odd);
+        t3.rotate(angleSte * odd);  t3.move(distance / 3);
+        t3.rotate(-angleStep * odd);  t3.move(distance / 3);
+        t3.rotate(-angleStep * odd);
 
         // 3. Recursively call each “branch”
-        drawHexThingFractalPaper(t1, distance / 3.0f, recursionLeft, -angleStep);
-        drawHexThingFractalPaper(t2, distance / 3.0f, recursionLeft, angleStep);
-        drawHexThingFractalPaper(t3, distance / 3.0f, recursionLeft, -angleStep);
+        drawHexThingFractalPaper(t1, distance / 3.0f, recursionLeft, -1);
+        drawHexThingFractalPaper(t2, distance / 3.0f, recursionLeft, 1);
+        drawHexThingFractalPaper(t3, distance / 3.0f, recursionLeft, -1);
     }
     else {
         // Base case: just draw a line
@@ -699,7 +699,7 @@ void Display9() {
   float initialDistance = 0.5f; 
 
   // Recursively draw with your new rules
-  drawHexThingFractalPaper(t, initialDistance, g_recursionCurrent);
+  drawHexThingFractalPaper(t, initialDistance, g_recursionCurrent, 1);
 }
 
 void Display4() {

@@ -650,7 +650,7 @@ void drawHexThingFractal(Turtle t, float distance, int recursionLeft, bool isBia
 }
 
 
-void drawHexThingFractalPaper(Turtle t, float distance, int recursionLeft)
+void drawHexThingFractalPaper(Turtle t, float distance, int recursionLeft, float angleStep = float(M_PI) / 3.0f)
 {
     // Example of a placeholder; replace with the actual instructions from the paper.
     if (recursionLeft > 0) {
@@ -675,9 +675,9 @@ void drawHexThingFractalPaper(Turtle t, float distance, int recursionLeft)
         t3.rotate(-angleStep);
 
         // 3. Recursively call each “branch”
-        drawHexThingFractalPaper(t1, distance / 3.0f, recursionLeft);
-        drawHexThingFractalPaper(t2, distance / 3.0f, recursionLeft);
-        drawHexThingFractalPaper(t3, distance / 3.0f, recursionLeft);
+        drawHexThingFractalPaper(t1, distance / 3.0f, recursionLeft, -angleStep);
+        drawHexThingFractalPaper(t2, distance / 3.0f, recursionLeft, angleStep);
+        drawHexThingFractalPaper(t3, distance / 3.0f, recursionLeft, -angleStep);
     }
     else {
         // Base case: just draw a line

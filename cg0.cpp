@@ -22,7 +22,7 @@ int g_w = 1000, g_h = 1000;
 
 unsigned char g_prevKey;
 
-int g_recursionMax = 8, g_recursionCurrent = 4;
+int g_recursionMax = 8, g_recursionCurrent = 1;
 double g_jfa = -0.82, g_jfb = -0.17; //Julia-Fatou a and b values.
 
 //----------------Utility functions----------------------
@@ -668,10 +668,10 @@ void drawHexThingFractalPaper(Turtle t, float distance, int recursionLeft)
         //    (These are just examples—replace with the actual logic.)
         float angleStep = float(M_PI) / 3.0f; // 60 degrees
         t1.rotate(0.0);          
-        t2.rotate(angleStep);    t2.move(distance);
-        t3.rotate(angleStep);  t3.move(distance);
-        t3.rotate(-angleStep);  t3.move(distance);
-        t3.rotate(-angleStep);  t3.move(distance);
+        t2.rotate(angleStep);    t2.move(distance / 3);
+        t3.rotate(angleStep);  t3.move(distance / 3);
+        t3.rotate(-angleStep);  t3.move(distance / 3);
+        t3.rotate(-angleStep);  t3.move(distance / 3);
 
         // 3. Recursively call each “branch”
         drawHexThingFractalPaper(t1, distance / 3.0f, recursionLeft);

@@ -667,11 +667,12 @@ void drawHexThingFractalPaper(Turtle t, float distance, int recursionLeft)
         // 2. Move & rotate them according to your paper’s instructions:
         //    (These are just examples—replace with the actual logic.)
         float angleStep = float(M_PI) / 3.0f; // 60 degrees
-        t1.rotate(0.0);          
+        t1.rotate(angleStep);          
         t2.rotate(angleStep);    t2.move(distance / 3);
+        t2.rotate(-angleStep);
         t3.rotate(angleStep);  t3.move(distance / 3);
         t3.rotate(-angleStep);  t3.move(distance / 3);
-        t3.rotate(-angleStep);  t3.move(distance / 3);
+        t3.rotate(-angleStep);
 
         // 3. Recursively call each “branch”
         drawHexThingFractalPaper(t1, distance / 3.0f, recursionLeft);

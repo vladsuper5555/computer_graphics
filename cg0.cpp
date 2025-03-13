@@ -649,6 +649,62 @@ void drawHexThingFractal(Turtle t, float distance, int recursionLeft, bool isBia
   }
 }
 
+
+void drawHexThingFractalPaper(Turtle t, float distance, int recursionLeft)
+{
+    // Example of a placeholder; replace with the actual instructions from the paper.
+    if (recursionLeft > 0) {
+        --recursionLeft;
+
+        // Below is just an EXAMPLE using 6 directions (hex) 
+        // and dividing the distance by 3 for the next level.
+        // Modify angles or number of new Turtle copies
+        // to match the fractal definition in your paper.
+
+        // 1. Make multiple Turtles for sub-branches
+        Turtle t1 = t, t2 = t, t3 = t, t4 = t, t5 = t, t6 = t;
+        
+        // 2. Move & rotate them according to your paper’s instructions:
+        //    (These are just examples—replace with the actual logic.)
+        float angleStep = float(M_PI) / 3.0f; // 60 degrees
+        t1.rotate(0.0);          t1.move(distance);
+        t2.rotate(angleStep);    t2.move(distance);
+        t3.rotate(2*angleStep);  t3.move(distance);
+        t4.rotate(3*angleStep);  t4.move(distance);
+        t5.rotate(4*angleStep);  t5.move(distance);
+        t6.rotate(5*angleStep);  t6.move(distance);
+
+        // 3. Recursively call each “branch”
+        drawHexThingFractalPaper(t1, distance / 3.0f, recursionLeft);
+        drawHexThingFractalPaper(t2, distance / 3.0f, recursionLeft);
+        drawHexThingFractalPaper(t3, distance / 3.0f, recursionLeft);
+        drawHexThingFractalPaper(t4, distance / 3.0f, recursionLeft);
+        drawHexThingFractalPaper(t5, distance / 3.0f, recursionLeft);
+        drawHexThingFractalPaper(t6, distance / 3.0f, recursionLeft);
+    }
+    else {
+        // Base case: just draw a line
+        t.draw(distance);
+    }
+}
+
+void Display9() {
+  glColor3f(1, 0, 0);
+  drawRecursionLevel();
+
+  // Start from origin
+  Turtle t(0, 0);
+  t.resetRotation(); 
+  // Possibly rotate if your fractal’s “initial angle” is something else
+  // t.rotate(M_PI/2); // for example
+
+  // Use a distance that fits on-screen
+  float initialDistance = 0.5f; 
+
+  // Recursively draw with your new rules
+  drawHexThingFractalPaper(t, initialDistance, g_recursionCurrent);
+}
+
 void Display4() {
   //Draw the triangle-like hex line fractal here.
   glColor3f(1, 0, 0);
